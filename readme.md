@@ -2,12 +2,13 @@ WordMaker
 
 Makes randomly generated words based on character n-grams.
 
-Currently this file just functions as my to-do list:
+This project is built using the following:
+* Bootstrap 4 alpha for the responsive design and pretty components
+* jQuery to read the input fields and make the buttons do stuff
+* Plain JavaScript to do the actual word-making, nothing special about it
+
+I am also using this as my to-do list:
 
 * If model is changed, add a warning informing user to re-build model before generating new words
-* Have a page that explains the word lists and provides sources
 * Refactor
     * Make CSS classes and IDs all consistent
-    * Eventually move Markov Model code to its own file
-
-http://names.mongabay.com/male_names.htm
