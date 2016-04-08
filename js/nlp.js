@@ -3,13 +3,13 @@
  */
 "use strict";
 
-function buildModel2(wordList, markovChainOrder) {
+function buildModel(wordList, markovChainOrder) {
     var histogram = {};
     var existingWords = {};
 
     wordList = wordList.toLowerCase().match(/[a-z']+/g);
     var padStart = Array(markovChainOrder + 1).join("[");
-    var paddedText
+    var paddedText;
 
     for (var i = 0; i < wordList.length; i++) {
         existingWords[wordList[i]] = true;
@@ -46,7 +46,7 @@ function buildModel2(wordList, markovChainOrder) {
     };
 
     function generateWord() {
-        var word = Array(markovChainOrder + 1).join("[")
+        var word = Array(markovChainOrder + 1).join("[");
         while (word[word.length - 1] != "]") {
             word += getNextLetter(word);
         }
@@ -67,7 +67,7 @@ function buildModel2(wordList, markovChainOrder) {
             if (existingWords[word] == undefined
                 && (isNaN(minLength) || word.length >= minLength)
                 && (isNaN(maxLength) || word.length <= maxLength)
-                && matchingRegex.test(word)
+                && (matchingRegex === undefined || matchingRegex.test(word))
             ) {
                 return word;
             }

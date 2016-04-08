@@ -24,7 +24,7 @@ function loadPremadeWordList() {
 
 function buildModelAndEnableGenerate() {
     //buildModel();
-    model = buildModel2($("#WordList").val(), parseInt($("#MarkovChainOrder").val()));
+    model = buildModel($("#WordList").val(), parseInt($("#MarkovChainOrder").val()));
     enableGenerateCard();
 }
 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>English Word Generator</title>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/WordMaker.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-inverse">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <br>
+        <h1 class="text-primary text-xs-center">English Word Generator</h1>
+        <hr/>
+        <h1 class="display-1 text-xs-center" id="word">
+        </h1>
+        <br><br><br>
+        <div class="row">
+            <button id="generate" class="btn btn-primary btn-lg center-block">Generate Another Word</button>
+        </div>
+        <br>
+        <div class="row">
+            <button id="generate-100" class="btn btn-primary btn-lg center-block">Generate 100 Words</button>
+        </div>
+        <br>
+        <div class="row text-xs-center">
+            <a href="index.html" class="">View Advanced Options</a>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+        </div>
+    </div>
+
+<!-- jQuery first, then Bootstrap JS. -->
+<script src="js/jquery-2.2.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/nlp.js"></script>
+<script src="js/english.js"></script>
+</body>
+</html>
