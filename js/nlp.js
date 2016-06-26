@@ -45,7 +45,7 @@ function buildModel(wordList, markovChainOrder) {
         return undefined;
     };
 
-    function generateWord() {
+    function generateAnyWord() {
         var word = Array(markovChainOrder + 1).join("[");
         while (word[word.length - 1] != "]") {
             word += getNextLetter(word);
@@ -63,7 +63,7 @@ function buildModel(wordList, markovChainOrder) {
      */
     function generateQualifyingWord(minLength, maxLength, matchingRegex) {
         while (true) {
-            var word = generateWord();
+            var word = generateAnyWord();
             if (existingWords[word] == undefined
                 && (isNaN(minLength) || word.length >= minLength)
                 && (isNaN(maxLength) || word.length <= maxLength)

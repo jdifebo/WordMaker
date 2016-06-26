@@ -1,4 +1,12 @@
-.disabled-children {
-    pointer-events: none;
-    opacity: 0.4;
+
+/* Bootstrap 4's collapsing navbar looks really ugly when expanded.  I want each item on its own line, so
+   I tweak it here.  Since I'm only collapsing on extra small screens,  I only re-style when width < 544
+*/
+@media (max-width: 543px) {
+    .navbar-nav .nav-item {
+        float: none;
+    }
+    .navbar-nav .nav-item{
+        margin-left: 1em;
+    }
 }

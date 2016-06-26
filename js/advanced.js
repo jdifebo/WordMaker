@@ -4,12 +4,13 @@
 "use strict";
 
 var model;
+var modelIsDirty = true;
 
 function generate() {
     var minLength = parseInt($("#minimumLength").val());
     var maxLength = parseInt($("#maximumLength").val());
     var matchingText = $("#mustContain").val();
-    var matchingRegex = new RegExp(matchingText.replace(new RegExp(" ", 'g'), "|"));
+    var matchingRegex = new RegExp(matchingText);
     $(".generated").each(function() {
         $( this ).text(model.generateWord(minLength, maxLength, matchingRegex));
     });
@@ -19,23 +20,29 @@ function loadPremadeWordList() {
     var filename = "resources/" + $("#premadeWordList option:selected").val();
     $.get(filename, function( data ) {
         $("#WordList").val( data );
+        var numWords = data.split("\n").length;
+        if (numWords > 1000){
+            $("#MarkovChainOrder").val(4);
+        }
+        else {
+            $("#MarkovChainOrder").val(3);
+        }
     });
+    modelIsDirty = true;
 }
 
-function buildModelAndEnableGenerate() {
-    //buildModel();
-    model = buildModel($("#WordList").val(), parseInt($("#MarkovChainOrder").val()));
-    enableGenerateCard();
-}
-
-function enableGenerateCard() {
-    $("#OverlayCard").hide();                               // First hide the overlay
-    $("#GenerateInputs").removeClass("disabled-children");  // Then re-enable the inputs
+function buildModelAndGenerateWords() {
+    if (modelIsDirty) {
+        modelIsDirty = false;
+        model = buildModel($("#WordList").val(), parseInt($("#MarkovChainOrder").val()));
+    }
+    generate();
 }
 
 $(document).ready(function() {
-    $("#generate").click(generate);
-    $("#BuildModel").click(buildModelAndEnableGenerate);
+    $("#generate").click(buildModelAndGenerateWords);
     loadPremadeWordList();
     $("#premadeWordList").change(loadPremadeWordList);
+    $("#WordList").change(function(){modelIsDirty = true});
+    $("#MarkovChainOrder").change(function(){modelIsDirty = true});
 });
