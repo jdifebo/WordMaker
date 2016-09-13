@@ -12,7 +12,7 @@ function generate() {
     var matchingText = $("#mustContain").val();
     var matchingRegex = new RegExp(matchingText);
     $(".generated").each(function() {
-        $( this ).text(model.generateWord(minLength, maxLength, matchingRegex));
+        $( this ).text(model.generateWord(minLength, maxLength, matchingRegex).join(''));
     });
 }
 
@@ -34,7 +34,9 @@ function loadPremadeWordList() {
 function buildModelAndGenerateWords() {
     if (modelIsDirty) {
         modelIsDirty = false;
-        model = buildModel($("#WordList").val(), parseInt($("#MarkovChainOrder").val()));
+        var words = $("#WordList").val().split(/\s+/);  // whitespace divides the words
+        var lettersFromWords = words.map(function(line){return line.split("");});   // each letter is a token
+        model = buildMarkovModel(lettersFromWords, parseInt($("#MarkovChainOrder").val()));
     }
     generate();
 }

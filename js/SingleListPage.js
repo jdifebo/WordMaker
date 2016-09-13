@@ -7,28 +7,27 @@ var model;
 
 function generate100Words(){
     $(".generated").each(function() {
-        $( this ).text(model.generateWord());
+        $( this ).text(model.generateWord().join(''));
     });
 }
 
 function generateSingleWord(){
-    $(".single-generated-word").text(model.generateWord());
+    $(".single-generated-word").text(model.generateWord().join(''));
 }
 
 $(document).ready(function() {
     // We know which word list to load by looking at the link in the HTML file
     var filename = $("#linkToWords").attr("href");
+    console.time("fetching");
     $.get(filename, function( data ) {
-        var numWords = data.split("\n").length;
-        var markovChainOrder;
-        if (numWords > 1000){
-            markovChainOrder = 4;
-        }
-        else {
-            markovChainOrder = 3;
-        }
-        model = buildModel(data, markovChainOrder);
+        console.timeEnd("fetching");
+        console.time("building");
+        var words = data.split(/\s+/);
+        var lettersFromWords = words.map(function(line){return line.split("");});
+        var markovChainOrder = words.length > 1000 ? 4 : 3;
+        model = buildMarkovModel(lettersFromWords, markovChainOrder);
         generateSingleWord();
+        console.timeEnd("building");
     });
     $("#generate").click(generateSingleWord);
     $("#generate-100").click(generate100Words);
