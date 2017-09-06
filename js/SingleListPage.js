@@ -7,12 +7,12 @@ var model;
 
 function generate100Words(){
     $(".generated").each(function() {
-        $( this ).text(model.generateWord().join(''));
+        $( this ).text(model.generateWord());
     });
 }
 
 function generateSingleWord(){
-    $(".single-generated-word").text(model.generateWord().join(''));
+    $(".single-generated-word").text(model.generateWord());
 }
 
 $(document).ready(function() {
@@ -25,9 +25,9 @@ $(document).ready(function() {
         var words = data.split(/\s+/);
         var lettersFromWords = words.map(function(line){return line.split("");});
         var markovChainOrder = words.length > 1000 ? 4 : 3;
-        model = buildMarkovModel(lettersFromWords, markovChainOrder);
-        generateSingleWord();
+        model = buildModel(words, markovChainOrder);
         console.timeEnd("building");
+        generateSingleWord();
     });
     $("#generate").click(generateSingleWord);
     $("#generate-100").click(generate100Words);
