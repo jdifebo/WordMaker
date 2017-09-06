@@ -7,8 +7,11 @@ This project is built using the following:
 * jQuery to read the input fields and make the buttons do stuff
 * Plain JavaScript to do the actual word-making, nothing special about it
 
-I am also using this as my to-do list:
+You can view multiple demos here:
 
-* If model is changed, add a warning informing user to re-build model before generating new words
-* Refactor
-    * Make CSS classes and IDs all consistent
+* [English Words](https://jdifebo.github.io/WordMaker/english.html)
+* [Elements](https://jdifebo.github.io/WordMaker/elements.html)
+* [Latin Words](https://jdifebo.github.io/WordMaker/latin.html)
+* [Popular Male Names](https://jdifebo.github.io/WordMaker/male_names.html)
+* [Popular Female Names](https://jdifebo.github.io/WordMaker/female_names.html)
+* [Advanced Options](https://jdifebo.github.io/WordMaker/advanced.html)
