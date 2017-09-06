@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Word Maker</title>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/WordMaker.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-inverse">
+
+        <a class="navbar-brand" href="https://jdifebo.github.io/">Joe's Projects</a>
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            &#9776;
+        </button>
+        <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="english.html">English Words</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="elements.html">Elements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="latin.html">Latin Wordsx</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="male_names.html">Popular Male Names</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="female_names.html">Popular Female Names</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="advanced.html">Advanced Options <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/jdifebo/WordMaker"><img height="24px" width="24px" src="GitHub-Mark-Light-32px.png"></img>&nbsp;Source on Github</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+        <h1>Word Maker Advanced Options</h1>
+        <hr/>
+        <p>
+            A simple program that generates made-up words based on a provided list of actual words.  <a href="https://github.com/jdifebo/WordMaker">View the code on Github here.</a>
+        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+
+                    <div class="card-header">
+                        Probabalistic Word Model Settings
+                    </div>
+                    <div class="card-block">
+                        <fieldset class="form-group">
+                            <label for="premadeWordList">Choose a premade word list:</label>
+                            <select class="form-control" id="premadeWordList">
+                                <option value="english.txt">English words (67537 words)</option>
+                                <option value="shakespeare.txt">All words from Shakespeare's works (21416 words)</option>
+                                <option value="latin.txt">Latin words (3095 words)</option>
+                                <option value="elements.txt">List of Elements (118 words)</option>
+                                <option value="male_names.txt">Most Common Male Names (US) (300 words)</option>
+                                <option value="female_names.txt">Most Common Female Names (US) (300 words)</option>
+                            </select>
+                            <label for="WordList">Or paste your own here:</label>
+                            <textarea id="WordList" class="form-control" rows="4"></textarea>
+                            <label for="MarkovChainOrder">Markov Chain Order:</label>
+                            <input id="MarkovChainOrder" class="form-control" type="number" name="quantity" min="1" value="4">
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        (Optional) Filter Settings
+                    </div>
+                    <div class="card-block">
+                        <div id="GenerateInputs">
+                            <div class="form-group row">
+                                <label for="minimumLength" class="col-sm-6 form-control-label">Minimum Length:</label>
+                                <div class="col-sm-6">
+                                    <input id="minimumLength" class="form-control" type="number" name="quantity" min="0">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="maximumLength" class="col-sm-6 form-control-label">Maximum Length:</label>
+                                <div class="col-sm-6">
+                                    <input id="maximumLength" class="form-control" type="number" name="quantity" min="0">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="mustContain" class="col-sm-6 form-control-label">Javascript RegExp to Match:</label>
+                                <div class="col-sm-6">
+                                    <input id="mustContain" class="form-control" type="text" name="quantity" min="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="generate" class="btn btn-primary btn-block btn-lg">Build Model and Generate Words</button>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 generated"></div>
+        </div>
+    </div>
+
+<!-- jQuery first, then Bootstrap JS. -->
+<script src="js/jquery-2.2.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wordmaker.js"></script>
+<script src="js/advanced.js"></script>
+</body>
+</html>
