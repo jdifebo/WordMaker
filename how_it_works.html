@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>How it Works</title>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/WordMaker.css">
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-inverse">
+
+		<a class="navbar-brand" href="https://jdifebo.github.io/">Joe's Projects</a>
+		<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+			&#9776;
+		</button>
+		<div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar">
+			<ul class="nav navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="english.html">English Words</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="elements.html">Elements</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="latin.html">Latin Words</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="male_names.html">Popular Male Names</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="female_names.html">Popular Female Names</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="advanced.html">Advanced Options</a>
+				</li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="how_it_works.html">How it Works <span class="sr-only">(current)</span></a>
+                </li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/jdifebo/WordMaker"><img height="24px" width="24px" src="GitHub-Mark-Light-32px.png"></img>&nbsp;Source on Github</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<br>
+		<h1 class="text-primary text-xs-center">How it Works</h1>
+		<hr/>
+		<p>
+			This website generates made-up words using <a href="https://en.wikipedia.org/wiki/Markov_chain">Markov chains</a> to learn and duplicate patterns
+			seen from existing word lists.  When generating a new word, each letter is picked in sequence.  If we are using a Markov chain of order 4, that
+			means that each letter is decided from the 4 letters that appear before it.  To figure out what the next letter should be, the program looks at 
+			an existing word list and looks at all of the times that it has seen those 4 letters appear in a row, along with what letter proceeds them.  it
+			then randomly picks one of those letters, with letters used more frequently having a higher probability of being picked.
+		</p>
+		
+
+		<br>
+		<h1 class="text-primary text-xs-center">Example</h1>
+		<ol>
+			<li>
+				Suppose the current letters are <b>barn</b>.  We look at our source word list and see the following words have the letters "barn":
+				<span class="highlighted-word">barn</span>
+				<span class="highlighted-word">barnacle</span>
+				<span class="highlighted-word">barnacled</span>
+				<span class="highlighted-word">barnacles</span>
+				<span class="highlighted-word">barnburner</span>
+				<span class="highlighted-word">barndoor</span>
+				<span class="highlighted-word">barney</span>
+				<span class="highlighted-word">barnful</span>
+				<span class="highlighted-word">barnstormer</span>
+				<span class="highlighted-word">barnyard</span>
+				<span class="highlighted-word">cowbarn</span>.
+				Since the letter "a" occured in 3 out of the 11 words after we saw the letters "barn", that means it has a 3/11, or 27% chance that it 
+				gets picked as our next letter.  For simplicity's sake, let's say we randomly chose it.
+			</li>
+			<li>
+				Since we chose "a" for our letter, the previous 4 letters are now <b>arna</b>.  We look at our source word list and see that there are 19 words with "arna",
+				including but not limited to:
+				<span class="highlighted-word">barnacle</span>
+				<span class="highlighted-word">carnage</span>
+				<span class="highlighted-word">carnally</span>
+				<span class="highlighted-word">carnassial</span>
+				<span class="highlighted-word">incarnation</span>
+				<span class="highlighted-word">reincarnate</span> and so on.
+				We only saw the letter "g" once, but that still means that it might be chosen as the next letter.  Let's randomly pick it.
+			</li>
+
+			<li>
+				Now our previous 4 letters are <b>rnag</b>.  There is only one word with this letter combination in all of our English word list!
+				That word is <span class="highlighted-word">carnage</span>.
+				That means that the next letter has to be "e".
+			</li>
+
+
+			<li>
+				Now our previous 4 letters are <b>nage</b>.  This sequence is seen 52 times total.  For 30 of those instances, it marks the end of the word.
+				There is also a chance that we might pick "a", "d", "i", "m", "n", or "r", since those are also seen after "nage".  We'll randomly choose "m",
+				which has a 6% chance of getting picked.
+			</li>
+
+			<li>
+				Now our previous 4 letters are <b>agem</b>.  This sequence is seen 14 times total.  The letter "e" occured 9 times (64%), so let's randomly
+				pick it.
+			</li>
+
+			<li>
+				Now our previous 4 letters are <b>geme</b>.  This sequence is seen 24 times, but the next letter is always "n".  So that will be our next letter.
+			</li>
+
+			<li>
+				Now our previous 4 letters are <b>emen</b>.  This sequence is very common; it has 235 occurances.  219 of those words have a "t" as the next 
+				letter (think of words like <span class="highlighted-word">management</span>).  So let's suppose that "t" is chosen to be next.
+			</li>
+
+			<li>
+				Now our previous 4 letters are <b>ment</b>.  This sequence is even more common with 698 occurances.  The letter "a" is pretty common 
+				(16% chance), but the most common outcome is for the word to end at this point since that happened 465 out of the 698 times.  So we'll end
+				the word here.  Our final word is <b><span class="highlighted-word">barnagement</span></b>!
+			</li>
+			
+		</ol>
+		<ul>
+			<li>
+				We skipped talking about how to get the first 4 letters.  Fortuately it's very simple.  If we don't have 4 letters chosen yet, we look at words
+				that start with the letters we do have.  So the first letter will be chosen based on what letters are commonly seen at the start of a word.  The
+				second letter will be chosen from all of the words that start with the first letter we chose previously.  The third letter will look at all words
+				that start with the first two letters, and so on.
+			</li>
+			<li>
+				Sometimes it happens that we create a word that's actually in our dictionary.  In this case, we just throw it out and start over.
+			</li>
+		</ul>
+
+<!-- jQuery first, then Bootstrap JS. -->
+<script src="js/jquery-2.2.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
