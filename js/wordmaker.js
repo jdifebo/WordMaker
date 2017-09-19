@@ -15,21 +15,19 @@ function buildMarkovModel(examples, markovChainOrder) {
         var word = examples[i];
         existingWords[word] = true;
         for (var j = 0; j < word.length + 1; j++) {
-            var previousLetters = word.substring(Math.max(j - markovChainOrder, 0), j);
+            var previousLetters = word.substring(j - markovChainOrder, j);
             var currentLetter = word.charAt(j);
             if (letterCounts[previousLetters] === undefined) {
-                letterCounts[previousLetters] = { total: 1 };
+                letterCounts[previousLetters] = { total: 0 };
+            }
+            letterCounts[previousLetters].total += 1;
+            if (letterCounts[previousLetters][currentLetter] == undefined) {
                 letterCounts[previousLetters][currentLetter] = 1;
             }
             else {
-                letterCounts[previousLetters].total += 1;
-                if (letterCounts[previousLetters][currentLetter] == undefined) {
-                    letterCounts[previousLetters][currentLetter] = 1;
-                }
-                else {
-                    letterCounts[previousLetters][currentLetter] += 1;
-                }
+                letterCounts[previousLetters][currentLetter] += 1;
             }
+
         }
     }
 
@@ -51,10 +49,10 @@ function buildMarkovModel(examples, markovChainOrder) {
         };
     }
 
-    function generateAnyWord(){
+    function generateAnyWord() {
         var word = "";
         var nextLetter = undefined;
-        while (nextLetter != ""){   // generating a blank string means end of word!
+        while (nextLetter != "") {   // generating a blank string means end of word!
             nextLetter = generateNextLetter(word.substring(Math.max(0, word.length - markovChainOrder), word.length));
             word += nextLetter;
         }
@@ -81,7 +79,7 @@ function buildMarkovModel(examples, markovChainOrder) {
         }
     }
 
-    return {generateWord: generateQualifyingWord}
+    return { generateWord: generateQualifyingWord }
 }
 
 /**
@@ -205,9 +203,13 @@ function buildMarkovModelGeneralPurpose(examples, markovChainOrder) {
 }
 
 function buildModel(wordList, markovChainOrder) {
-    var histogram = {};
+    var letterCounts = {};
     var existingWords = {};
 
+    /*
+     * By padding the start of every word with a bunch of [ characters, we can 
+     * always look at the last 4 letters
+     */
     var padStart = Array(markovChainOrder + 1).join("[");
     var paddedText;
 
@@ -216,11 +218,12 @@ function buildModel(wordList, markovChainOrder) {
         paddedText = padStart + wordList[i] + "]";
         for (var j = 0; j < paddedText.length - (markovChainOrder); j++) {
             var sub = paddedText.substr(j, markovChainOrder);
-            if (histogram[sub] == undefined)
-                histogram[sub] = {
-                    "total" : 0
+            if (letterCounts[sub] == undefined) {
+                letterCounts[sub] = {
+                    "total": 0
                 };
-            var next = histogram[sub];
+            }
+            var next = letterCounts[sub];
             next["total"] += 1;
             var nextChar = paddedText[j + markovChainOrder];
             if (next[nextChar] == undefined)
@@ -230,15 +233,15 @@ function buildModel(wordList, markovChainOrder) {
         }
     }
 
-    var getNextLetter = function(string) {
+    var getNextLetter = function (string) {
         var substring = string.substr(-1 * markovChainOrder, markovChainOrder);
-        var rand = getRandomInt(0, histogram[substring]["total"]);
-        for ( var y in histogram[substring]) {
+        var rand = getRandomInt(0, letterCounts[substring]["total"]);
+        for (var y in letterCounts[substring]) {
             if (y != "total") {
-                if (rand < histogram[substring][y]) {
+                if (rand < letterCounts[substring][y]) {
                     return y;
                 } else {
-                    rand -= histogram[substring][y];
+                    rand -= letterCounts[substring][y];
                 }
             }
         }
@@ -276,21 +279,12 @@ function buildModel(wordList, markovChainOrder) {
 
     // Returns a random integer between min (included) and max (excluded)
     // Using Math.round() will give you a non-uniform distribution!
-    var getRandomInt = function(min, max) {
+    var getRandomInt = function (min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     };
 
 
     return {
-        generateWord : generateQualifyingWord
+        generateWord: generateQualifyingWord
     }
 }
-
-var test = buildModel(["ababacccccb", "ababacccb", "abcccccca", "d", "abababbxyz"], 3);
-console.log("testing");
-console.log(test.generateWord());
-console.log(test.generateWord());
-console.log(test.generateWord());
-console.log(test.generateWord());
-console.log(test.generateWord());
-console.log(test.generateWord());
