@@ -16,7 +16,7 @@ function buildMarkovModel(examples, markovChainOrder) {
         existingWords[word] = true;
         for (var j = 0; j < word.length + 1; j++) {
             var previousLetters = word.substring(j - markovChainOrder, j);
-            var currentLetter = word.charAt(j);
+            var currentLetter = word[j] || "";
             if (letterCounts[previousLetters] === undefined) {
                 letterCounts[previousLetters] = { total: 0 };
             }
@@ -53,7 +53,7 @@ function buildMarkovModel(examples, markovChainOrder) {
         var word = "";
         var nextLetter = undefined;
         while (nextLetter != "") {   // generating a blank string means end of word!
-            nextLetter = generateNextLetter(word.substring(Math.max(0, word.length - markovChainOrder), word.length));
+            nextLetter = generateNextLetter(word.substring(word.length - markovChainOrder));
             word += nextLetter;
         }
         return word;

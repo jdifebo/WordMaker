@@ -25,7 +25,7 @@ $(document).ready(function() {
         var words = data.split(/\s+/);
         var lettersFromWords = words.map(function(line){return line.split("");});
         var markovChainOrder = words.length > 1000 ? 4 : 3;
-        model = buildModel(words, markovChainOrder);
+        model = buildMarkovModel(words, markovChainOrder);
         console.timeEnd("building");
         generateSingleWord();
     });
